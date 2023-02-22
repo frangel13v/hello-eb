@@ -9,10 +9,10 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                withAWS(credentials: 'angelfr-aws-credentials') {
-                   sshagent(['ssh-amazon']) {
+                withAWS(credentials: 'angelfr-aws-credentials', region: 'eu-west-1') {
+                   dir("proyecto") {
                         sh 'eb create mi-entorno-dev'
-                    }                    
+                    }
                 }
                 
             }
